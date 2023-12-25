@@ -13,7 +13,7 @@ import os
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
-GOOGLE_DRIVE_FILE_ID = "1xjDyantQr60_jv1vr-xdCkbsJJGD7kxW"
+GOOGLE_DRIVE_FILE_ID = "1w323DoBBGW1xjZ1y8aAbr3yROEC-yemf"
 
 PRE_TRAINED_MODEL_NAME = 'indobenchmark/indobert-base-p2'
 tokenizer = BertTokenizer.from_pretrained(PRE_TRAINED_MODEL_NAME)
@@ -161,7 +161,7 @@ def load_model():
 	if not os.path.exists(filepath):
 		# download file
 		import gdown
-		file_id = "1xjDyantQr60_jv1vr-xdCkbsJJGD7kxW"  # Replace this with your file's ID
+		file_id = "1w323DoBBGW1xjZ1y8aAbr3yROEC-yemf"  # Replace this with your file's ID
 		gdown.download(f"https://drive.google.com/uc?id={file_id}&confirm=t", filepath)
     
 

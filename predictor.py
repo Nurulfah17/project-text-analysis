@@ -130,7 +130,7 @@ def predict(teks):
     return df
 
 
-def endpoint(teks):
+def endpoint(teks, model, device):
     df = predict(teks)
     # df = df[['tanggal', 'bundle', 'label', 'is_sentiment', 'contentp_clean']]
     encoder = LabelEncoder()
@@ -144,7 +144,8 @@ def endpoint(teks):
     df["Topic_category"] = ypred
     return ypred
 
-   # path to file
+def load_model():
+    # path to file
     filepath = "model/model.bin"
 
     # folder exists?

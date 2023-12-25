@@ -10,11 +10,10 @@ import re,string
 import emoji
 from sklearn.preprocessing import LabelEncoder
 import os
-from content.sentiment.label import predict
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
-GOOGLE_DRIVE_FILE_ID = "1w323DoBBGW1xjZ1y8aAbr3yROEC-yemf"
+GOOGLE_DRIVE_FILE_ID = "1w323DoBBGW1xjZ1y8aAbr3yROEC-yemf "
 
 PRE_TRAINED_MODEL_NAME = 'indobenchmark/indobert-base-p2'
 tokenizer = BertTokenizer.from_pretrained(PRE_TRAINED_MODEL_NAME)
@@ -131,38 +130,37 @@ def predict(teks):
     return df
 
 
-def endpoint(teks, model, device):
+def endpoint(teks):
     df = predict(teks)
-    # df = df[['tanggal', 'bundle', 'label', 'is_sentiment', 'contentp_clean']]
+    #df = df[['tanggal', 'bundle', 'label', 'is_sentiment', 'contentp_clean']]
     encoder = LabelEncoder()
     encoder.classes_ = np.load('bert_classes.npy', allow_pickle=True)
-    
+    model = SentimentClassifier(3)
+    model.load_state_dict(torch.load('model/model.bin',  map_location=torch.device('cpu')))
     model = model.to(device)
     testing_data_loader = create_data_loader(df, tokenizer, MAX_LEN, BATCH_SIZE)
-    
-    y_review_texts, y_pred, y_pred_probs = get_predictions(model, testing_data_loader)
+    y_review_texts, y_pred, y_pred_probs = get_predictions(
+        model,
+        testing_data_loader
+    )
     ypred = encoder.inverse_transform(y_pred)
     df["Topic_category"] = ypred
     return ypred
 
-def load_model():
-    # path to file
-    filepath = "model/model.bin"
 
-    # folder exists?
-    if not os.path.exists('model'):
-        # create folder
-        os.mkdir('model')
+def load_model():
+	# path to file
+	filepath = "model/model.bin"
+
+	# folder exists?
+	if not os.path.exists('model'):
+		# create folder
+		os.mkdir('model')
+	
+	# file exists?
+	if not os.path.exists(filepath):
+		# download file
+		import gdown
+		file_id = "1w323DoBBGW1xjZ1y8aAbr3yROEC-yemf"  # Replace this with your file's ID
+		gdown.download(f"https://drive.google.com/uc?id={file_id}&confirm=t", filepath)
     
-    # file exists?
-    if not os.path.exists(filepath):
-        # download file
-        import gdown
-        file_id = "1w323DoBBGW1xjZ1y8aAbr3yROEC-yemf"  # Replace this with your file's ID
-        gdown.download(f"https://drive.google.com/uc?id={file_id}&confirm=t", filepath)
-    
-    # Load the model outside of the function
-    model = SentimentClassifier(3)
-    model.load_state_dict(torch.load(filepath, map_location=torch.device('cpu')))
-    
-    return model

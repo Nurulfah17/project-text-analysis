@@ -7,7 +7,6 @@ This Streamlit application performs sentiment analysis on app reviews. Using a p
 - Real-time AI-based predictions
 - User-friendly interface for submitting reviews
 
-![Apps Interface](https://github.com/muhajirakbarhsb/Predict_Text/assets/58876118/9a435c90-810d-4c9a-b1aa-c40d9a770389)
 
 ## Installation
 Ensure you have Python and Streamlit installed. If not, install Streamlit using:
@@ -39,5 +38,3 @@ Designed for simplicity and user-friendliness.
 ##Contributing
 Contributions are welcome. Please fork the repository and submit a pull request.
 
-Contact
-For queries or feedback, contact muhajirakbarhsb@gmail.com

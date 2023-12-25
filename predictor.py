@@ -10,6 +10,7 @@ import re,string
 import emoji
 from sklearn.preprocessing import LabelEncoder
 import os
+from content.sentiment.label import predict
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 

@@ -27,7 +27,7 @@ st.title("📲 Apps Review Sentiment Analysis")
 st.write("Do you think that your customer loves your Apps? Do they love the facility you gave? 🛎️")
 st.write("Checking all the review is not an easy task, let our AI do it for you! 😆")
 st.write("It's easy and fast. Put the review down below and we will take care the rest 😉")
-
+st.write("By: Nur Ulfah Atiqah")
 # user input
 user_review = st.text_area(
 	label="Review:",

@@ -150,6 +150,8 @@ def endpoint(teks):
 import os
 import gdown
 import torch
+from content.sentiment.label import predict
+
 
 def load_model():
     # path to file

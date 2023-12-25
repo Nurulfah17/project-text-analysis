@@ -1,4 +1,6 @@
-pip==23.3.2
+pip ==23.3.2
+urllib3>=1.24.2,<2.0
+streamlit
 tqdm
 requests
 emoji

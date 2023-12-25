@@ -4,10 +4,10 @@ streamlit
 tqdm
 requests
 emoji
-transformers==2.8.0
+transformers
 torch
 gdown
 numpy
 pandas
 scikit-learn
-tokenizers==0.5.2
+

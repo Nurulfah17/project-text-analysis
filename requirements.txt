@@ -10,4 +10,4 @@ gdown
 numpy
 pandas
 scikit-learn
-tokenizers==0.10.3
+tokenizers==0.5.2

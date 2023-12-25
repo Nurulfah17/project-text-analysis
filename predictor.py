@@ -134,7 +134,7 @@ def endpoint(teks):
     df = predict(teks)
     #df = df[['tanggal', 'bundle', 'label', 'is_sentiment', 'contentp_clean']]
     encoder = LabelEncoder()
-    encoder.classes_ = np.load('bert_classes.npy', allow_pickle=True)
+    encoder.classes_ = np.load('bert.npy', allow_pickle=True)
     model = SentimentClassifier(3)
     model.load_state_dict(torch.load('model/model.bin',  map_location=torch.device('cpu')))
     model = model.to(device)

@@ -147,20 +147,21 @@ def endpoint(teks):
     df["Topic_category"] = ypred
     return ypred
 
+import os
+import gdown
+import torch
 
 def load_model():
-	# path to file
-	filepath = "model/model.bin"
+    # path to file
+    file_path = os.path.abspath('model/model.bin')
 
-	# folder exists?
-	if not os.path.exists('model'):
-		# create folder
-		os.mkdir('model')
-	
-	# file exists?
-	if not os.path.exists(filepath):
-		# download file
-		import gdown
-		file_id = "1w323DoBBGW1xjZ1y8aAbr3yROEC-yemf"  # Replace this with your file's ID
-		gdown.download(f"https://drive.google.com/uc?id={file_id}&confirm=t", filepath)
-    
+    # folder exists?
+    if not os.path.exists('model'):
+        # create folder
+        os.makedirs('model')
+
+    # file exists?
+    if not os.path.exists(file_path):
+        # download file
+        file_id = "1w323DoBBGW1xjZ1y8aAbr3yROEC-yemf"  # Replace this with your file's ID
+        gdown.download(f"https://drive.google.com/uc?id={file_id}&confirm=t", file_path)
